@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Close Button -->
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_gravity="end"/>
+
+        <!-- Profile Picture -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/blank_profile"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImage"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Camera Icon -->
+        <ImageButton
+            android:id="@+id/btnChangePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginTop="-10dp"/>
+
+        <!-- Name Field -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:textSize="16dp"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"/>
+
+        <!-- Phone Number -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇸🇬 +65"
+                android:padding="12dp"/>
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:textSize="16dp"
+                android:inputType="phone"
+                android:padding="12dp"
+                android:background="@android:drawable/editbox_background"/>
+        </LinearLayout>
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"/>
+
+        <!-- Gender Dropdown -->
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:spinnerMode="dropdown"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pickup address"
+            android:layout_margin="5dp"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            ></TextView>
+
+        <!-- Address -->
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pickup Address"
+            android:textSize="16dp"
+            android:inputType="textPostalAddress"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account-related information and product communications from Vroom will be sent to this verified email address."
+            android:layout_margin="5dp"
+            android:textSize="10dp"
+            android:textColor="#808080"
+            ></TextView>
+
+        <!-- Apply Changes Button -->
+        <Button
+            android:id="@+id/btnApplyChanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apply changes"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>

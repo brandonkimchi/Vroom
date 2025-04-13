@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/total_question"
+        android:layout_width="175dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="161dp"
+        android:gravity="center"
+        android:text="Total Questions"
+        android:textColor="#0D47A1"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="5"
+        android:text="Question Statement"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_question" />
+
+    <LinearLayout
+        android:id="@+id/choices_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question">
+
+        <Button
+            android:id="@+id/option1"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Option 1"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:strokeColor="#D3D3D3"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/option2"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Option 2"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:strokeColor="#D3D3D3"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/option3"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Option 3"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:strokeColor="#D3D3D3"
+            app:strokeWidth="1dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choices_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

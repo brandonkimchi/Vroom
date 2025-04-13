@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Select Time"
+        android:textColor="#0051B1"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_9to11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="9am - 11am"
+            android:backgroundTint="#B0B0B0"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btn_1to3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1pm - 3pm"
+            android:backgroundTint="#B0B0B0"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#B0B0B0"
+        android:textColor="#FFFFFF" >
+
+        <Button
+            android:id="@+id/btn_4to6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="4pm - 6pm"
+            android:backgroundTint="#B0B0B0"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btn_8to10"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="8pm - 10pm"
+            android:backgroundTint="#B0B0B0"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Book Button -->
+    <Button
+        android:id="@+id/btnBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book"
+        android:backgroundTint="#0051B1"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

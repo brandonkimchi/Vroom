@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.search.SearchCalenderFragment">
+
+    <TextView
+        android:id="@+id/tvSubtitle12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Check Availability"
+        android:textColor="#0051B1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/tvSelectDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Select date"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle12" />
+
+    <TextView
+        android:id="@+id/text_search_calender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnbookslot"
+        android:layout_width="139dp"
+        android:layout_height="42dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#1250b5"
+        android:text="Book Slot"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructorName"
+        app:strokeColor="#D3D3D3"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/btnFacebook3"
+        android:layout_width="111dp"
+        android:layout_height="42dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Chat"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnbookslot"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructorName"
+        app:strokeColor="#D3D3D3"
+        app:strokeWidth="1dp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="#D3D3D3"
+        app:layout_constraintTop_toBottomOf="@+id/btnbookslot"
+        tools:layout_editor_absoluteX="21dp" />
+
+    <ImageView
+        android:id="@+id/ivInstructorProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="Instructor Profile Picture"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_zachary_lee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstructorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zachary Lee"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstructorRating" />
+
+    <TextView
+        android:id="@+id/tvInstructorRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="⭐ 5.0"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivInstructorProfile" />
+
+    <Button
+        android:id="@+id/back_button2"
+        android:layout_width="82dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#1250b5"
+        android:text="Back"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="381dp"
+        android:layout_height="317dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelectDate2"
+        app:mcv_firstDayOfWeek="monday"
+        app:mcv_showOtherDates="all" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

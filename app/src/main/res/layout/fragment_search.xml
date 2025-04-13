@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.search.SearchFragment">
+
+    <TextView
+        android:id="@+id/text_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSubtitle15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Car"
+        android:textColor="#0051B1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/tvSubtitle13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Select a driving centre"
+        android:textColor="#0051B1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivBanner" />
+
+    <TextView
+        android:id="@+id/tvSubtitle14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Motorcycle"
+        android:textColor="#0051B1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCentre" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#D3D3D3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivClass2" />
+
+    <ImageView
+        android:id="@+id/ivBanner"
+        android:layout_width="301dp"
+        android:layout_height="142dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="76dp"
+        android:contentDescription="Promotional Banner"
+        android:scaleType="centerCrop"
+        android:src="@drawable/instructor_banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerCentre"
+        android:layout_width="333dp"
+        android:layout_height="39dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle13" />
+
+    <ImageView
+        android:id="@+id/ivClass2B"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Class 2B"
+        android:src="@drawable/yellow_motorcycle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle14" />
+
+    <ImageView
+        android:id="@+id/ivClass2A"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Class 2A"
+        android:src="@drawable/green_motorcycle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivClass2B"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle14" />
+
+    <ImageView
+        android:id="@+id/ivClass2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Class 2"
+        android:src="@drawable/blue_motorcycle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivClass2A"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle14" />
+
+    <ImageView
+        android:id="@+id/ivClass3"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="Class 3"
+        android:src="@drawable/blue_car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivClass3A"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle15" />
+
+    <ImageView
+        android:id="@+id/ivClass3A"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="Class 3A"
+        android:src="@drawable/red_car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle15" />
+
+    <Button
+        android:id="@+id/searchbutton"
+        android:layout_width="360dp"
+        android:layout_height="46dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="#1250b5"
+        android:onClick="changeToSearchInstructorFragment"
+        android:text="Search"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivClass3A" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

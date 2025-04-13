@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "130468948774",
+    "firebase_url": "https://vroom-android-application-default-rtdb.firebaseio.com",
+    "project_id": "vroom-android-application",
+    "storage_bucket": "vroom-android-application.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130468948774:android:a625790f85e172a4efafe7",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfZ_Ty596QO34DvbPqUqGFr8l6bnqpKvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130468948774:android:b751ea7aa45a3344efafe7",
+        "android_client_info": {
+          "package_name": "com.example.vroomandroidapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfZ_Ty596QO34DvbPqUqGFr8l6bnqpKvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130468948774:android:063008edc84995fbefafe7",
+        "android_client_info": {
+          "package_name": "com.example.vroomandroidapplicationv4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfZ_Ty596QO34DvbPqUqGFr8l6bnqpKvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

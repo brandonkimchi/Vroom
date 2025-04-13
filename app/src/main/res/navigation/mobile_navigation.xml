@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_bar_home">
+
+    <fragment
+        android:id="@+id/navigation_bar_home"
+        android:name="com.example.vroomandroidapplicationv4.ui.home.HomeFragment"
+        android:label="home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_bar_search"
+        android:name="com.example.vroomandroidapplicationv4.ui.search.SearchFragment"
+        android:label="search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_bar_calender"
+        android:name="com.example.vroomandroidapplicationv4.ui.calender.CalenderFragment"
+        android:label="calender"
+        tools:layout="@layout/fragment_calender" />
+
+    <!-- Messages Fragment (Chat List) -->
+    <fragment
+        android:id="@+id/messagesFragment"
+        android:name="com.example.vroomandroidapplicationv4.ui.messages.MessagesFragment"
+        android:label="Messages"
+        tools:layout="@layout/fragment_messages" />
+    <!-- Chat Fragment (Individual Chat) -->
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.vroomandroidapplicationv4.ui.messages.Chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" >
+
+        <!-- Arguments passed to ChatFragment -->
+        <argument
+            android:name="chatName"
+            app:argType="string" />
+        <argument
+            android:name="profileImage"
+            app:argType="integer" />
+    </fragment>
+
+    <!-- Quiz Fragment -->
+    <fragment
+        android:id="@+id/navigation_bar_quiz"
+        android:name="com.example.vroomandroidapplicationv4.ui.quizzes.QuizFragment"
+        android:label="quizzes"
+        tools:layout="@layout/fragment_quiz" />
+
+    <!-- BTT Start Fragment -->
+    <fragment
+        android:id="@+id/btt_start"
+        android:name="com.example.vroomandroidapplicationv4.ui.quizzes.BTTStart"
+        tools:layout="@layout/fragment_b_t_t_start" />
+
+    <!-- FTT Start Fragment -->
+    <fragment
+        android:id="@+id/ftt_start"
+        android:name="com.example.vroomandroidapplicationv4.ui.quizzes.FTTStart"
+        tools:layout="@layout/fragment_f_t_t_start" />
+
+    <!--  Questions Fragment -->
+    <fragment
+        android:id="@+id/questionPage"
+        android:name="com.example.vroomandroidapplicationv4.ui.quizzes.QuestionFragment"
+        tools:layout="@layout/fragment_question" />
+
+
+
+</navigation>

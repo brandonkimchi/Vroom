@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Pressed state (light blue) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#ADD8E6"/>  <!-- Light Blue -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Default state (gray) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#D3D3D3"/>  <!-- Light Gray -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</selector>

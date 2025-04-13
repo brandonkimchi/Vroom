@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- Profile Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <!-- Profile Icon -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/blank_profile"
+            android:contentDescription="Profile"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImage" />
+
+        <!-- User Info (Name + Edit Profile) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp"
+            android:gravity="center_vertical">
+
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <!-- Edit Profile Button -->
+            <TextView
+                android:id="@+id/menu_edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:text="Edit Profile"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="12dp"
+                android:background="@drawable/chat_bubble_sent"
+                android:gravity="center"
+                android:clickable="true"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Settings Option -->
+    <TextView
+        android:id="@+id/menu_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:drawableStart="@drawable/setting_icon"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground" />
+
+    <!-- Help & Feedback Option -->
+    <TextView
+        android:id="@+id/menu_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Help &amp; Feedback"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:drawableStart="@drawable/questionmark"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground" />
+</LinearLayout>

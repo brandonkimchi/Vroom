@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">VroomAndroidApplicationV4</string>
+
+    <!--for gender options menu-->
+    <string-array name="gender_options">
+        <item>Please select your gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- to assign text to the image buttons in quiz_main -->
+    <string name="startBTTButton_description">Start BTT quiz</string>
+    <string name="startFTTButton_description">Start FTT quiz</string>
+
+    <string name="my_score">score</string>
+    <string name="score_comment">comment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
