@@ -1,6 +1,7 @@
 package com.example.vroomandroidapplicationv4.ui.search;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Cus
 import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Review;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SearchProfileFragment extends Fragment {
@@ -104,6 +106,33 @@ public class SearchProfileFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         CustomAdapter2 adapter = new CustomAdapter2(reviewerNames, reviewList);
         recyclerView.setAdapter(adapter);
+
+
+        // Open ReviewFragment when Review button is clicked
+        Button reviewButton = root.findViewById(R.id.btnbookslot2);
+        reviewButton.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+
+            // Pass instructor name
+            String instructorName = bundle.getString("instructor_name");
+            args.putString("instructor_name", instructorName);
+
+            // ✅ Pass student name
+            HomeActivity activity = (HomeActivity) getActivity();
+            if (activity != null) {
+                String studentName = activity.getIntent().getStringExtra("name");
+                args.putString("student_name", studentName);
+            }
+
+            ReviewFragment reviewFragment = new ReviewFragment();
+            reviewFragment.setArguments(args);
+
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.nav_host_fragment_activity_home, reviewFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
 
         return root;
     }
