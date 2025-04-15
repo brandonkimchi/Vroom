@@ -26,7 +26,9 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -51,6 +53,8 @@ public class ChatFragment extends Fragment {
     private ImageButton chatBackButton;
     private ImageButton sendButton;
 
+    private static final Map<String, List<Message>> chatHistoryMap = new HashMap<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false); // load XML layout to the chat
@@ -74,7 +78,14 @@ public class ChatFragment extends Fragment {
         //UI setting the username and image with the recyclerview
         chatUserName.setText(userName);
         chatUserImage.setImageResource(userImage);
-        messageList = new ArrayList<>();
+
+        if (chatHistoryMap.containsKey(userName)) {
+            messageList = chatHistoryMap.get(userName);
+        } else {
+            messageList = new ArrayList<>();
+            chatHistoryMap.put(userName, messageList);
+        }
+
         messageAdapter = new MessageAdapter(messageList);
         recyclerViewChat.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewChat.setAdapter(messageAdapter);

@@ -22,6 +22,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/grey_arrow_icon"
+            android:background="@android:color/transparent"
             android:padding="5dp"
             android:clickable="true"
             android:focusable="true"/>
@@ -87,9 +88,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/blue_arrow_icon"
+            android:background="@android:color/transparent"
             android:contentDescription="Send Message"
             android:layout_marginStart="10dp"
             android:clickable="true"
             android:focusable="true"/>
+
     </LinearLayout>
 </LinearLayout>
