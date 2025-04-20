@@ -13,12 +13,12 @@ import com.example.vroomandroidapplicationv4.R;
 
 import java.util.List;
 
-public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.ViewHolder> {
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
     private List<String> reviewerNames;
     private List<Review> reviewList;
 
-    public CustomAdapter2(List<String> reviewerNames, List<Review> reviewList) {
+    public ReviewAdapter(List<String> reviewerNames, List<Review> reviewList) {
         this.reviewerNames = reviewerNames;
         this.reviewList = reviewList;
     }

@@ -1,7 +1,6 @@
 package com.example.vroomandroidapplicationv4.ui.search;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vroomandroidapplicationv4.HomeActivity;
 import com.example.vroomandroidapplicationv4.R;
 import com.example.vroomandroidapplicationv4.databinding.FragmentSearchProfileBinding;
-import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.CustomAdapter2;
+import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.ReviewAdapter;
 import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Review;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SearchProfileFragment extends Fragment {
@@ -104,7 +102,7 @@ public class SearchProfileFragment extends Fragment {
         // // RecyclerView setup and Set adapter
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-        CustomAdapter2 adapter = new CustomAdapter2(reviewerNames, reviewList);
+        ReviewAdapter adapter = new ReviewAdapter(reviewerNames, reviewList);
         recyclerView.setAdapter(adapter);
 
 

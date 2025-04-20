@@ -4,7 +4,7 @@ import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Ins
 
 import java.util.List;
 
-public class heapsortalgorithm {
+public class HeapSortAlgorithm {
     // Sort by rating (High to Low)
     public static void heapSortByRating(List<Instructor> list) {
         int n = list.size();

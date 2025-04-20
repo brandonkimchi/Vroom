@@ -7,9 +7,6 @@ import java.util.Map;
 import java.util.Collections;
 import java.util.Comparator;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,18 +18,22 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vroomandroidapplicationv4.HomeActivity;
 import com.example.vroomandroidapplicationv4.R;
 import com.example.vroomandroidapplicationv4.databinding.FragmentSearchInstructorBinding;
-import com.example.vroomandroidapplicationv4.ui.search.datastructuresandalgorithms.heapsortalgorithm;
-import com.example.vroomandroidapplicationv4.ui.search.datastructuresandalgorithms.undirectedweightedgraphdatastructureanddijkstraalgorithm;
-import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.CustomAdapter;
+import com.example.vroomandroidapplicationv4.ui.search.datastructuresandalgorithms.HeapSortAlgorithm;
+import com.example.vroomandroidapplicationv4.ui.search.datastructuresandalgorithms.UndirectedWeightedGraphDataStructureAndDijkstraAlgorithm;
 import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Instructor;
+import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.InstructorAdapter;
 import com.example.vroomandroidapplicationv4.ui.search.relatedtorecyclerview.Review;
+import com.example.vroomandroidapplicationv4.ui.search.sorting.SortByDistance;
+import com.example.vroomandroidapplicationv4.ui.search.sorting.SortByPriceDecreasing;
+import com.example.vroomandroidapplicationv4.ui.search.sorting.SortByPriceIncreasing;
+import com.example.vroomandroidapplicationv4.ui.search.sorting.SortByRating;
+import com.example.vroomandroidapplicationv4.ui.search.sorting.SortStrategy;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +45,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 public class SearchInstructorFragment extends Fragment {
 
     private FragmentSearchInstructorBinding binding;
-    private CustomAdapter customAdapter;
+    private InstructorAdapter instructorAdapter;
     private List<Instructor> instructorList;
     private ImageView ivClass2B, ivClass2A, ivClass2, ivClass3, ivClass3A;
 
@@ -104,7 +105,7 @@ public class SearchInstructorFragment extends Fragment {
 
         RecyclerView recyclerView = root.findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(customAdapter);
+        recyclerView.setAdapter(instructorAdapter);
         instructorList = new ArrayList<>();
 
         // myRef.setValue("Hello, World!");
@@ -192,11 +193,11 @@ public class SearchInstructorFragment extends Fragment {
                     instructorCountTextView.setText(instructorList.size() + " instructors found");
 
                     // Notify RecyclerView adapter of data changes
-                    customAdapter.notifyDataSetChanged();
+                    instructorAdapter.notifyDataSetChanged();
                 }
 
                 // Notify RecyclerView adapter of data changes
-                customAdapter.notifyDataSetChanged();
+                instructorAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -206,8 +207,8 @@ public class SearchInstructorFragment extends Fragment {
         });
 
         // 🔹 Initialize adapter and set it
-        customAdapter = new CustomAdapter(instructorList, requireActivity());
-        recyclerView.setAdapter(customAdapter);
+        instructorAdapter = new InstructorAdapter(instructorList, requireActivity());
+        recyclerView.setAdapter(instructorAdapter);
 
 
         /////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +219,7 @@ public class SearchInstructorFragment extends Fragment {
 //
 //            RecyclerView recyclerView = root.findViewById(R.id.my_recycler_view);
 //            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-//            recyclerView.setAdapter(customAdapter);
+//            recyclerView.setAdapter(instructorAdapter);
 //
 //            // 🔹 Initialize dataset
 //            instructorList = new ArrayList<>();
@@ -227,8 +228,8 @@ public class SearchInstructorFragment extends Fragment {
 //            instructorList.add(new Instructor("Jet Wei", "Been teaching for more than 10 years.", "$70/lesson", 4.9, R.drawable.profile_jet_wei));
 //
             // 🔹 Initialize adapter and set it
-//            customAdapter = new CustomAdapter(instructorList, requireActivity());
-//            recyclerView.setAdapter(customAdapter);
+//            instructorAdapter = new InstructorAdapter(instructorList, requireActivity());
+//            recyclerView.setAdapter(instructorAdapter);
 //        }
 
         // Reference to the TextView and set dynamic address
@@ -269,106 +270,39 @@ public class SearchInstructorFragment extends Fragment {
         Button btnSortByRating = root.findViewById(R.id.btnFilters); // Button for sorting by rating
         Button btnSortByPriceIncreasing = root.findViewById(R.id.btnFilters3); // Button for sorting by price
         Button btnSortByPriceDecreasing = root.findViewById(R.id.btnFilters2); // Button for sorting by price
-
-        // Set click listener for sorting by rating
-        btnSortByRating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortByRating();
-            }
-        });
-
-        // Set click listener for sorting by price
-        btnSortByPriceIncreasing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortByPriceIncreasing();
-            }
-        });
-
-        // Set click listener for sorting by price
-        btnSortByPriceDecreasing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortByPriceDecreasing();
-            }
-        });
-
-        // Set click listener for sorting by distance
         Button btnSortByDistance = root.findViewById(R.id.btnFilters4);
-        btnSortByDistance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortByDistance();
+
+        btnSortByRating.setOnClickListener(v -> {
+            applySortStrategy(new SortByRating());
+        });
+
+        btnSortByPriceIncreasing.setOnClickListener(v -> {
+            applySortStrategy(new SortByPriceIncreasing());
+        });
+
+        btnSortByPriceDecreasing.setOnClickListener(v -> {
+            applySortStrategy(new SortByPriceDecreasing());
+        });
+
+        btnSortByDistance.setOnClickListener(v -> {
+            String userLocation = ((HomeActivity) requireActivity()).getIntent().getStringExtra("address");
+            if (userLocation != null) {
+                applySortStrategy(new SortByDistance(userLocation));
             }
         });
 
         return root;
     }
 
+    private void applySortStrategy(SortStrategy strategy) {
+        strategy.sort(instructorList);
+        instructorAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    public void sortByRating() {
-        if (instructorList != null && !instructorList.isEmpty()) {
-            heapsortalgorithm.heapSortByRating(instructorList);
-            customAdapter.notifyDataSetChanged();
-            Log.d("SortAction", "Sorted by rating (High to Low) using HeapSort");
-        }
-    }
-
-    public void sortByPriceIncreasing() {
-        if (instructorList != null && !instructorList.isEmpty()) {
-            heapsortalgorithm.heapSortByPrice(instructorList, false);
-            customAdapter.notifyDataSetChanged();
-            Log.d("SortAction", "Sorted by price (Low to High) using HeapSort");
-        }
-    }
-
-    public void sortByPriceDecreasing() {
-        if (instructorList != null && !instructorList.isEmpty()) {
-            heapsortalgorithm.heapSortByPrice(instructorList, true);
-            customAdapter.notifyDataSetChanged();
-            Log.d("SortAction", "Sorted by price (High to Low) using HeapSort");
-        }
-    }
-
-    public void sortByDistance() {
-        if (instructorList != null && !instructorList.isEmpty()) {
-            // Step 1: Get user location from HomeActivity
-            HomeActivity activity = (HomeActivity) getActivity();
-            if (activity == null) return;
-
-            String userLocation = activity.getIntent().getStringExtra("address");
-            if (userLocation == null) {
-                Log.d("SortByDistance", "User location is null.");
-                return;
-            }
-
-            // Step 2: Initialize graph and run Dijkstra
-            undirectedweightedgraphdatastructureanddijkstraalgorithm graph = new undirectedweightedgraphdatastructureanddijkstraalgorithm();
-            Map<String, Integer> distances = graph.dijkstra(userLocation);
-
-            // Step 3: Sort instructors based on distance
-            Collections.sort(instructorList, new Comparator<Instructor>() {
-                @Override
-                public int compare(Instructor i1, Instructor i2) {
-                    Integer dist1 = distances.get(i1.getAddress());
-                    if (dist1 == null) dist1 = Integer.MAX_VALUE;
-
-                    Integer dist2 = distances.get(i2.getAddress());
-                    if (dist2 == null) dist2 = Integer.MAX_VALUE;
-                    return Integer.compare(dist1, dist2);
-                }
-            });
-
-            // Step 4: Update UI
-            customAdapter.notifyDataSetChanged();
-            Log.d("SortAction", "Sorted by distance using Dijkstra");
-        }
     }
 
 }

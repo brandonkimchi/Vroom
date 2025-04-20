@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,8 +36,7 @@ public class CalenderFragment extends Fragment {
     private MaterialCalendarView materialCalendarView;
     private RecyclerView recyclerView;
     private EventsAdapter eventsAdapter;
-    private Map<CalendarDay, List<Event>> eventsMap = new HashMap<>();
-    private DatabaseReference databaseRef;
+    private CalenderViewModel viewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,88 +47,49 @@ public class CalenderFragment extends Fragment {
         materialCalendarView = root.findViewById(R.id.materialCalendarView);
         recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // Single adapter instantiation
         eventsAdapter = new EventsAdapter(new ArrayList<>());
         recyclerView.setAdapter(eventsAdapter);
 
-        // Firebase setup
-        databaseRef = FirebaseDatabase.getInstance().getReference("Registered_Users");
+        // ViewModel setup
+        viewModel = new ViewModelProvider(this).get(CalenderViewModel.class);
 
-        // Fetch Firebase bookings into calendar & recyclerview
-        fetchBookingsFromFirebase();
+        // Observe LiveData from ViewModel
+        viewModel.getEventsMapLiveData().observe(getViewLifecycleOwner(), updatedMap -> {
+            materialCalendarView.removeDecorators();
+            materialCalendarView.addDecorator(new EventDecorator(Color.RED, updatedMap.keySet()));
 
-        // Respond to date selection
+            CalendarDay selected = materialCalendarView.getSelectedDate();
+            if (selected != null && updatedMap.containsKey(selected)) {
+                eventsAdapter.updateData(updatedMap.get(selected));
+            } else {
+                eventsAdapter.updateData(new ArrayList<>());
+            }
+        });
+
+        // Fetch Firebase data
+        HomeActivity activity = (HomeActivity) getActivity();
+        if (activity != null) {
+            String currentUserName = activity.getIntent().getStringExtra("name");
+            viewModel.fetchBookings(FirebaseDatabase.getInstance().getReference("Registered_Users"), currentUserName);
+        }
+
+        // When user selects a new date on the calendar
         materialCalendarView.setOnDateChangedListener((widget, date, selected) -> {
-            List<Event> eventsForDay = eventsMap.containsKey(date) ? eventsMap.get(date) : new ArrayList<>();
-
-            // Sort events before displaying
-            Collections.sort(eventsForDay, (e1, e2) -> {
-                // Example: extract time slot ordering
-                int slot1 = getTimeSlotOrder(e1.getDateTime());
-                int slot2 = getTimeSlotOrder(e2.getDateTime());
-                return Integer.compare(slot1, slot2);
-            });
-
-            // Update RecyclerView
-            eventsAdapter.updateData(eventsForDay);
+            Map<CalendarDay, List<Event>> eventMap = viewModel.getEventsMapLiveData().getValue();
+            if (eventMap != null) {
+                List<Event> eventsForDay = eventMap.getOrDefault(date, new ArrayList<>());
+                Collections.sort(eventsForDay, (e1, e2) -> {
+                    int slot1 = getTimeSlotOrder(e1.getDateTime());
+                    int slot2 = getTimeSlotOrder(e2.getDateTime());
+                    return Integer.compare(slot1, slot2);
+                });
+                eventsAdapter.updateData(eventsForDay);
+            }
         });
 
         return root;
-    }
-
-    private void fetchBookingsFromFirebase() {
-        // Get user name passed from HomeActivity
-        HomeActivity activity = (HomeActivity) getActivity();
-        if (activity == null) return;
-        String currentUserName = activity.getIntent().getStringExtra("name");
-
-        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                eventsMap.clear();
-
-                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                    String fetchedName = userSnapshot.child("name").getValue(String.class);
-                    if (currentUserName.equals(fetchedName)) {
-                        // Load bookings
-                        DataSnapshot bookingsSnapshot = userSnapshot.child("bookings");
-                        for (DataSnapshot booking : bookingsSnapshot.getChildren()) {
-                            HashMap<String, Object> bookingData = (HashMap<String, Object>) booking.getValue();
-
-                            int day = ((Long) bookingData.get("day")).intValue();
-                            int month = ((Long) bookingData.get("month")).intValue();
-                            int year = ((Long) bookingData.get("year")).intValue();
-                            String time = (String) bookingData.get("time");
-                            String instructor = (String) bookingData.get("instructor");
-                            String drivingCenter = (String) bookingData.get("driving_center");
-                            String address = (String) bookingData.get("address");
-
-                            CalendarDay calendarDay = CalendarDay.from(year, month - 1, day);
-
-                            Event event = new Event(
-                                    "Lesson with " + instructor + " at " + drivingCenter,
-                                    day + "/" + month + "/" + year + " | " + time,
-                                    "Pickup at " + address + ". Please arrive 15 minutes earlier!"
-                            );
-
-                            if (!eventsMap.containsKey(calendarDay)) {
-                                eventsMap.put(calendarDay, new ArrayList<>());
-                            }
-                            eventsMap.get(calendarDay).add(event);
-                        }
-                        break;
-                    }
-                }
-
-                // After building the map:
-                materialCalendarView.removeDecorators(); // Optional: clear old decorators
-                materialCalendarView.addDecorator(new EventDecorator(Color.RED, eventsMap.keySet()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(requireContext(), "Error loading calendar bookings", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private int getTimeSlotOrder(String dateTime) {

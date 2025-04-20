@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class undirectedweightedgraphdatastructureanddijkstraalgorithm {
+public class UndirectedWeightedGraphDataStructureAndDijkstraAlgorithm {
     private Map<String, List<Edge>> graph;
 
-    public undirectedweightedgraphdatastructureanddijkstraalgorithm() {
+    public UndirectedWeightedGraphDataStructureAndDijkstraAlgorithm() {
         graph = new HashMap<>();
         buildGraph(); // Automatically populate graph on instantiation
     }

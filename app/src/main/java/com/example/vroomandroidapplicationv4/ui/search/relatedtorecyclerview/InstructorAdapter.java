@@ -18,12 +18,12 @@ import com.example.vroomandroidapplicationv4.ui.search.SearchProfileFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.ViewHolder> {
 
     private List<Instructor> instructorList;
     private FragmentActivity activity;
 
-    public CustomAdapter(List<Instructor> instructorList, FragmentActivity activity) {
+    public InstructorAdapter(List<Instructor> instructorList, FragmentActivity activity) {
         this.instructorList = instructorList;
         this.activity = activity;
     }
@@ -117,5 +117,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             transaction.addToBackStack(null);
             transaction.commit();
         }
+    }
+
+    public void updateData(List<Instructor> newList) {
+        this.instructorList = newList;
+        notifyDataSetChanged();
     }
 }
