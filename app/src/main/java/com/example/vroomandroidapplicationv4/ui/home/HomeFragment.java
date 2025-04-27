@@ -67,8 +67,8 @@ public class HomeFragment extends Fragment {
             name = activity.getIntent().getStringExtra("name");
             String address = activity.getIntent().getStringExtra("address");
 
-            Log.d("Debug User Data", "Name: " + name);
-            Log.d("Debug User Data", "Address: " + address);
+            Log.d("Debug Student Data", "Name: " + name);
+            Log.d("Debug Student Data", "Address: " + address);
 
             // Dynamically update tvGreeting TextView
             TextView greetingTextView = root.findViewById(R.id.tvGreeting);

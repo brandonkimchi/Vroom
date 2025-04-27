@@ -25,7 +25,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if (viewType == 0) { // inflate User message layout
+        if (viewType == 0) { // inflate Student message layout
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_user, parent, false);
         } else { // inflate AI message layout
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_ai, parent, false);
@@ -55,7 +55,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public int getItemViewType(int position) { //help the onCreateViewHolder() decide which layout to inflate
-        return messageList.get(position).isSent() ? 0 : 1; // User = 0, AI = 1
+        return messageList.get(position).isSent() ? 0 : 1; // Student = 0, AI = 1
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder { //holds the view(textview and imageview) inside eachh message item

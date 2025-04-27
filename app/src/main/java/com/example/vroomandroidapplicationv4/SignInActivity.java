@@ -115,7 +115,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int userId = (int) snapshot.getChildrenCount() + 1;
-                User user = new User(userId, name, address, password, Collections.singletonList(new HashMap<>()));
+                Student user = new Student(userId, name, address, password, Collections.singletonList(new HashMap<>()));
                 databaseRef.child(String.valueOf(userId)).setValue(user);
                 Toast.makeText(SignInActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
                 Log.d("USER_INFO", user.toString());
