@@ -11,3 +11,8 @@ Key features include instructor discovery, booking lessons, scheduling, in-app c
 Advanced algorithms like Dijkstra’s algorithm are used to calculate the shortest path between towns, helping students find nearby instructors. Data structures such as HashMaps and ArrayLists support fast data access and dynamic UI updates, particularly within RecyclerViews.
 
 Vroom’s design follows core software engineering principles including Single Responsibility and Composition Over Inheritance, ensuring modular, maintainable code. Vroom delivers a seamless experience that simplifies the learning journey and enhances communication between students and instructors.
+
+## License  
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.  
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
